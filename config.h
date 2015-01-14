@@ -45,7 +45,11 @@
 #endif
 
 #ifndef MAV_SYSTEM_ID
- # define MAV_SYSTEM_ID          1
+ #define MAV_SYSTEM_ID          1
+#endif
+
+#ifndef NUM_PARACHUTES
+ #define NUM_PARACHUTES 		2
 #endif
 
 #ifndef SERIAL0_BAUD

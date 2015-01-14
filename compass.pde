@@ -1,23 +1,3 @@
-#include <AP_Compass.h>
-
-#include <GCS.h>
-#include <GCS_MAVLink.h>
-
-#include "arduhpr.h"
-
-// Compass
-#if CONFIG_COMPASS == HAL_COMPASS_PX4
-AP_Compass_PX4 compass;
-#elif CONFIG_COMPASS == HAL_COMPASS_VRBRAIN
-AP_Compass_VRBRAIN compass;
-#elif CONFIG_COMPASS == HAL_COMPASS_HMC5843
-AP_Compass_HMC5843 compass;
-#elif CONFIG_COMPASS == HAL_COMPASS_HIL
-AP_Compass_HIL compass;
-#else
- #error Unrecognized CONFIG_COMPASS setting
-#endif
-
 // initialize compass
 void compass_init(void)
 {
@@ -36,12 +16,6 @@ void compass_init(void)
 void compass_accumulate(void)
 {
 	compass.accumulate();
-}
-
-const Vector3f &compass_get_field(int pos)
-{
-	const Vector3f &field = compass.get_field(pos);
-	return field;
 }
 
 // report_compass - displays compass information.  Also called by compassmot.pde

@@ -1,14 +1,3 @@
-#include <AP_InertialSensor.h>
-
-#include <GCS.h>
-#include <GCS_MAVLink.h>
-
-#include "arduhpr.h"
-
-// Inertial Sensor
-AP_InertialSensor ins;
-static const AP_InertialSensor::Sample_rate ins_sample_rate = AP_InertialSensor::RATE_100HZ;
-
 void ins_init(void)
 {
 	hal.console->printf_P(PSTR("Initializing INS..."));
@@ -16,12 +5,6 @@ void ins_init(void)
     		 ins_sample_rate);
     ins.init_accel();
     hal.console->println();
-}
-
-const Vector3f &ins_get_gyro(void)
-{
-	const Vector3f &gyro = ins.get_gyro();
-	return gyro;
 }
 
 void ins_print(void)
@@ -50,34 +33,4 @@ void ins_print(void)
 
     hal.console->printf_P(PSTR("Accel X:%4.2f \t Y:%4.2f \t Z:%4.2f \t Gyro X:%4.2f \t Y:%4.2f \t Z:%4.2f\n"),
     								  accel.x, accel.y, accel.z, gyro.x, gyro.y, gyro.z);
-}
-
-void ins_sample(void)
-{
-	ins.wait_for_sample();
-}
-
-void ins_send_raw(mavlink_channel_t chan)
-{
-    const Vector3f &accel = ins.get_accel(0);
-    const Vector3f &gyro = ins.get_gyro(0);
-    const Vector3f &mag = compass_get_field(0);
-
-    mavlink_msg_raw_imu_send(
-        chan,
-        hal.scheduler->micros(),
-        accel.x * 1000.0f / GRAVITY_MSS,
-        accel.y * 1000.0f / GRAVITY_MSS,
-        accel.z * 1000.0f / GRAVITY_MSS,
-        gyro.x * 1000.0f,
-        gyro.y * 1000.0f,
-        gyro.z * 1000.0f,
-        mag.x,
-        mag.y,
-        mag.z);
-}
-
-void ins_update(void)
-{
-    ins.update();
 }

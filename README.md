@@ -1,0 +1,1 @@
+High Power Rocketry involves no autopilot, no RC, and no missions. This package is mainly concerned with automating recovery deployment and relaying telemetry from HPR vehicles.
