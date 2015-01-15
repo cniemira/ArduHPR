@@ -1,0 +1,35 @@
+Menu system / CLI
+
+Ground station to test commands / modes
+
+AP_Parachute lib updates?
+AP_Parachute test?
+AP_Menu
+ * add echo option
+ * kill pre-prompt echo
+ * add "set prompt"
+
+AP_Igniter lib
+ * has-fired
+ * continuity
+
+
+ArduHPR.pde:        //FIXME: hal.uartA->begin(map_baudrate(global.serial0_baud));
+ArduHPR.pde:        //FIXME: hal.uartA->begin(map_baudrate(global.serial1_baud));
+gcs.pde:    	CHECK_PAYLOAD_SIZE(GLOBAL_POSITION_INT); //FIXME: technically inaccurate when sending raw
+gcs.pde:    //FIXME: mavlink_system.sysid = global.sysid_this_mav;
+gcs.pde:	//FIXME
+gps.pde:            //FIXME: This should be !motor.armed() &&
+mavlink.pde://FIXME: move to ins.pde
+mavlink.pde://    uint32_t custom_mode = 3; //FIXME AUTO=3
+mavlink.pde:        case HPR_MODE_RECOVERED:				//FIXME: a post-active status would be nice
+
+
+
+ArduHPR.pde://TODO: move this stuff into global
+gcs.pde://TODO
+gcs.pde:// TODO: consider
+gcs.pde://TODO
+hpr.pde:		//TODO: Scrub the launch
+hpr.pde:	//TODO: fire launch igniter
+hpr.pde:	//TODO: turn the notifier off

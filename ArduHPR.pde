@@ -51,6 +51,7 @@
 #include <AP_Igniter.h>
 #include <AP_InertialSensor.h>
 #include <AP_InertialNav.h>
+#include <AP_Menu.h>
 //#include <AP_Parachute.h>
 #include <AP_Scheduler.h>
 #include <GCS.h>
@@ -227,7 +228,8 @@ static const AP_Scheduler::Task scheduler_tasks[] PROGMEM = {
 	{ compass_update,       10,    720 },
 	{ barometer_update,     10,   1000 },
 
-    { gcs_send_location,    20,    100 },
+	{ cli_update,           50,    100 },
+    { gcs_send_location,    50,    100 },
 
 	// 1.0 hz
     { gcs_send_heartbeat,  100,    150 },
@@ -297,7 +299,7 @@ void setup(void)
     hal.uartB->set_blocking_writes(false);
     hal.uartC->set_blocking_writes(false);
 
-    hal.console->print_P(PSTR("\nReady\n\n"));
+    hal.console->print_P(PSTR("\nReady.\nHit 'Enter' 3 times to start CLI.\n\n"));
     gcs_send_text_P(SEVERITY_LOW, PSTR("System ready"));
     scheduler.init(&scheduler_tasks[0], sizeof(scheduler_tasks)/sizeof(scheduler_tasks[0]));
 }
